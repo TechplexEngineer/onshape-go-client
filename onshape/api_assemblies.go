@@ -15,8 +15,9 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 	"reflect"
+	"strings"
+	"time"
 )
 
 // Linger please
@@ -28,15 +29,14 @@ var (
 type AssembliesApiService service
 
 type apiAddFeatureRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
+	ctx                         _context.Context
+	apiService                  *AssembliesApiService
+	did                         string
+	wvm                         string
+	wvmid                       string
+	eid                         string
 	bTFeatureDefinitionCall1406 *BTFeatureDefinitionCall1406
 }
-
 
 func (r apiAddFeatureRequest) BTFeatureDefinitionCall1406(bTFeatureDefinitionCall1406 BTFeatureDefinitionCall1406) apiAddFeatureRequest {
 	r.bTFeatureDefinitionCall1406 = &bTFeatureDefinitionCall1406
@@ -55,11 +55,11 @@ AddFeature Method for AddFeature
 func (a *AssembliesApiService) AddFeature(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiAddFeatureRequest {
 	return apiAddFeatureRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -83,19 +83,15 @@ func (r apiAddFeatureRequest) Execute() (BTFeatureDefinitionResponse1617, *_neth
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/features"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-	
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json;charset=UTF-8; qs=0.09"}
 
@@ -136,13 +132,13 @@ func (r apiAddFeatureRequest) Execute() (BTFeatureDefinitionResponse1617, *_neth
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTFeatureDefinitionResponse1617
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTFeatureDefinitionResponse1617
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -157,14 +153,14 @@ func (r apiAddFeatureRequest) Execute() (BTFeatureDefinitionResponse1617, *_neth
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiCreateAssemblyRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
+	ctx                  _context.Context
+	apiService           *AssembliesApiService
+	did                  string
+	wid                  string
 	bTModelElementParams *BTModelElementParams
 }
-
 
 func (r apiCreateAssemblyRequest) BTModelElementParams(bTModelElementParams BTModelElementParams) apiCreateAssemblyRequest {
 	r.bTModelElementParams = &bTModelElementParams
@@ -181,9 +177,9 @@ CreateAssembly Create Assembly
 func (a *AssembliesApiService) CreateAssembly(ctx _context.Context, did string, wid string) apiCreateAssemblyRequest {
 	return apiCreateAssemblyRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
 	}
 }
 
@@ -207,15 +203,13 @@ func (r apiCreateAssemblyRequest) Execute() (BTDocumentElementInfo, *_nethttp.Re
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
+
 	if r.bTModelElementParams == nil {
 		return localVarReturnValue, nil, reportError("bTModelElementParams is required and must be specified")
 	}
@@ -260,13 +254,13 @@ func (r apiCreateAssemblyRequest) Execute() (BTDocumentElementInfo, *_nethttp.Re
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTDocumentElementInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTDocumentElementInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -281,15 +275,15 @@ func (r apiCreateAssemblyRequest) Execute() (BTDocumentElementInfo, *_nethttp.Re
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiCreateInstanceRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
-	eid string
+	ctx                                _context.Context
+	apiService                         *AssembliesApiService
+	did                                string
+	wid                                string
+	eid                                string
 	bTAssemblyInstanceDefinitionParams *BTAssemblyInstanceDefinitionParams
 }
-
 
 func (r apiCreateInstanceRequest) BTAssemblyInstanceDefinitionParams(bTAssemblyInstanceDefinitionParams BTAssemblyInstanceDefinitionParams) apiCreateInstanceRequest {
 	r.bTAssemblyInstanceDefinitionParams = &bTAssemblyInstanceDefinitionParams
@@ -307,10 +301,10 @@ CreateInstance Create assembly instance
 func (a *AssembliesApiService) CreateInstance(ctx _context.Context, did string, wid string, eid string) apiCreateInstanceRequest {
 	return apiCreateInstanceRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
+		eid:        eid,
 	}
 }
 
@@ -334,17 +328,14 @@ func (r apiCreateInstanceRequest) Execute() ([]BTOccurrence74, *_nethttp.Respons
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
+
 	if r.bTAssemblyInstanceDefinitionParams == nil {
 		return localVarReturnValue, nil, reportError("bTAssemblyInstanceDefinitionParams is required and must be specified")
 	}
@@ -412,15 +403,15 @@ func (r apiCreateInstanceRequest) Execute() ([]BTOccurrence74, *_nethttp.Respons
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiDeleteFeatureRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
-	eid string
-	fid string
-}
 
+type apiDeleteFeatureRequest struct {
+	ctx        _context.Context
+	apiService *AssembliesApiService
+	did        string
+	wid        string
+	eid        string
+	fid        string
+}
 
 /*
 DeleteFeature Delete Feature
@@ -434,11 +425,11 @@ DeleteFeature Delete Feature
 func (a *AssembliesApiService) DeleteFeature(ctx _context.Context, did string, wid string, eid string, fid string) apiDeleteFeatureRequest {
 	return apiDeleteFeatureRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
-		eid: eid,
-		fid: fid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
+		eid:        eid,
+		fid:        fid,
 	}
 }
 
@@ -462,18 +453,14 @@ func (r apiDeleteFeatureRequest) Execute() (BTFeatureApiBase1430, *_nethttp.Resp
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/features/featureid/{fid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"fid"+"}", _neturl.QueryEscape(parameterToString(r.fid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fid"+"}", _neturl.QueryEscape(parameterToString(r.fid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -536,15 +523,15 @@ func (r apiDeleteFeatureRequest) Execute() (BTFeatureApiBase1430, *_nethttp.Resp
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiDeleteInstanceRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	eid string
-	wid string
-	nid string
-}
 
+type apiDeleteInstanceRequest struct {
+	ctx        _context.Context
+	apiService *AssembliesApiService
+	did        string
+	eid        string
+	wid        string
+	nid        string
+}
 
 /*
 DeleteInstance Delete assembly instance.
@@ -558,11 +545,11 @@ DeleteInstance Delete assembly instance.
 func (a *AssembliesApiService) DeleteInstance(ctx _context.Context, did string, eid string, wid string, nid string) apiDeleteInstanceRequest {
 	return apiDeleteInstanceRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		eid: eid,
-		wid: wid,
-		nid: nid,
+		ctx:        ctx,
+		did:        did,
+		eid:        eid,
+		wid:        wid,
+		nid:        nid,
 	}
 }
 
@@ -577,7 +564,6 @@ func (r apiDeleteInstanceRequest) Execute() (*_nethttp.Response, error) {
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AssembliesApiService.DeleteInstance")
@@ -586,18 +572,14 @@ func (r apiDeleteInstanceRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/instance/nodeid/{nid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nid"+"}", _neturl.QueryEscape(parameterToString(r.nid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nid"+"}", _neturl.QueryEscape(parameterToString(r.nid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -642,20 +624,20 @@ func (r apiDeleteInstanceRequest) Execute() (*_nethttp.Response, error) {
 
 	return localVarHTTPResponse, nil
 }
+
 type apiGetAssemblyBoundingBoxesRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
+	ctx            _context.Context
+	apiService     *AssembliesApiService
+	did            string
+	wvm            string
+	wvmid          string
+	eid            string
 	linkDocumentId *string
-	includeHidden *bool
+	includeHidden  *bool
 	displayStateId *string
-	configuration *string
+	configuration  *string
 	explodedViewId *string
 }
-
 
 func (r apiGetAssemblyBoundingBoxesRequest) LinkDocumentId(linkDocumentId string) apiGetAssemblyBoundingBoxesRequest {
 	r.linkDocumentId = &linkDocumentId
@@ -694,11 +676,11 @@ GetAssemblyBoundingBoxes Bounding Boxes.
 func (a *AssembliesApiService) GetAssemblyBoundingBoxes(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetAssemblyBoundingBoxesRequest {
 	return apiGetAssemblyBoundingBoxesRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -722,19 +704,15 @@ func (r apiGetAssemblyBoundingBoxesRequest) Execute() (BTBoundingBoxInfo, *_neth
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/boundingboxes"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-					
+
 	if r.linkDocumentId != nil {
 		localVarQueryParams.Add("linkDocumentId", parameterToString(*r.linkDocumentId, ""))
 	}
@@ -811,21 +789,21 @@ func (r apiGetAssemblyBoundingBoxesRequest) Execute() (BTBoundingBoxInfo, *_neth
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetAssemblyDefinitionRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
-	linkDocumentId *string
-	includeMateFeatures *bool
-	includeNonSolids *bool
-	includeMateConnectors *bool
-	configuration *string
-	explodedViewId *string
-}
 
+type apiGetAssemblyDefinitionRequest struct {
+	ctx                   _context.Context
+	apiService            *AssembliesApiService
+	did                   string
+	wvm                   string
+	wvmid                 string
+	eid                   string
+	linkDocumentId        *string
+	includeMateFeatures   *bool
+	includeNonSolids      *bool
+	includeMateConnectors *bool
+	configuration         *string
+	explodedViewId        *string
+}
 
 func (r apiGetAssemblyDefinitionRequest) LinkDocumentId(linkDocumentId string) apiGetAssemblyDefinitionRequest {
 	r.linkDocumentId = &linkDocumentId
@@ -869,11 +847,11 @@ GetAssemblyDefinition Assembly Definition.
 func (a *AssembliesApiService) GetAssemblyDefinition(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetAssemblyDefinitionRequest {
 	return apiGetAssemblyDefinitionRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -897,19 +875,15 @@ func (r apiGetAssemblyDefinitionRequest) Execute() (BTAssemblyDefinitionInfo, *_
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-						
+
 	if r.linkDocumentId != nil {
 		localVarQueryParams.Add("linkDocumentId", parameterToString(*r.linkDocumentId, ""))
 	}
@@ -966,13 +940,13 @@ func (r apiGetAssemblyDefinitionRequest) Execute() (BTAssemblyDefinitionInfo, *_
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTAssemblyDefinitionInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTAssemblyDefinitionInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -987,27 +961,27 @@ func (r apiGetAssemblyDefinitionRequest) Execute() (BTAssemblyDefinitionInfo, *_
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiGetAssemblyShadedViewsRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
-	linkDocumentId *string
-	viewMatrix *string
-	outputHeight *int32
-	outputWidth *int32
-	pixelSize *float64
-	edges *string
-	showAllParts *bool
+	ctx             _context.Context
+	apiService      *AssembliesApiService
+	did             string
+	wvm             string
+	wvmid           string
+	eid             string
+	linkDocumentId  *string
+	viewMatrix      *string
+	outputHeight    *int32
+	outputWidth     *int32
+	pixelSize       *float64
+	edges           *string
+	showAllParts    *bool
 	includeSurfaces *bool
 	useAntiAliasing *bool
-	displayStateId *string
-	configuration *string
-	explodedViewId *string
+	displayStateId  *string
+	configuration   *string
+	explodedViewId  *string
 }
-
 
 func (r apiGetAssemblyShadedViewsRequest) LinkDocumentId(linkDocumentId string) apiGetAssemblyShadedViewsRequest {
 	r.linkDocumentId = &linkDocumentId
@@ -1081,11 +1055,11 @@ GetAssemblyShadedViews Method for GetAssemblyShadedViews
 func (a *AssembliesApiService) GetAssemblyShadedViews(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetAssemblyShadedViewsRequest {
 	return apiGetAssemblyShadedViewsRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -1109,19 +1083,15 @@ func (r apiGetAssemblyShadedViewsRequest) Execute() (BTShadedViewsInfo, *_nethtt
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/shadedviews"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-												
+
 	if r.linkDocumentId != nil {
 		localVarQueryParams.Add("linkDocumentId", parameterToString(*r.linkDocumentId, ""))
 	}
@@ -1196,13 +1166,13 @@ func (r apiGetAssemblyShadedViewsRequest) Execute() (BTShadedViewsInfo, *_nethtt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTShadedViewsInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTShadedViewsInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1217,22 +1187,22 @@ func (r apiGetAssemblyShadedViewsRequest) Execute() (BTShadedViewsInfo, *_nethtt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetBillOfMaterialsRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
-	metadataWorkspaceId *string
-	bomColumnIds *[]string
-	indented *bool
-	multiLevel *bool
-	generateIfAbsent *bool
-	linkDocumentId *string
-	configuration *string
-}
 
+type apiGetBillOfMaterialsRequest struct {
+	ctx                 _context.Context
+	apiService          *AssembliesApiService
+	did                 string
+	wvm                 string
+	wvmid               string
+	eid                 string
+	metadataWorkspaceId *string
+	bomColumnIds        *[]string
+	indented            *bool
+	multiLevel          *bool
+	generateIfAbsent    *bool
+	linkDocumentId      *string
+	configuration       *string
+}
 
 func (r apiGetBillOfMaterialsRequest) MetadataWorkspaceId(metadataWorkspaceId string) apiGetBillOfMaterialsRequest {
 	r.metadataWorkspaceId = &metadataWorkspaceId
@@ -1281,26 +1251,111 @@ GetBillOfMaterials Get Bill of Materials
 func (a *AssembliesApiService) GetBillOfMaterials(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetBillOfMaterialsRequest {
 	return apiGetBillOfMaterialsRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
+}
+
+type GetBillOfMaterialsResponse struct {
+	BomTable struct {
+		FormatVersion string    `json:"formatVersion"`
+		ID            string    `json:"id"`
+		Name          string    `json:"name"`
+		Type          string    `json:"type"`
+		CreatedAt     time.Time `json:"createdAt"`
+		TemplateID    string    `json:"templateId"`
+		BomSource     struct {
+			Document struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"document"`
+			Workspace struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"workspace"`
+			Element struct {
+				ID    string `json:"id"`
+				Type  string `json:"type"`
+				Name  string `json:"name"`
+				State string `json:"state"`
+			} `json:"element"`
+			Href          string `json:"href"`
+			ViewHref      string `json:"viewHref"`
+			Configuration string `json:"configuration"`
+		} `json:"bomSource"`
+		Headers []struct {
+			Name         string `json:"name"`
+			PropertyName string `json:"propertyName"`
+			Visible      bool   `json:"visible"`
+			PropertyID   string `json:"propertyId"`
+		} `json:"headers"`
+		Items []struct {
+			ItemSource struct {
+				ViewHref           string   `json:"viewHref"`
+				FullConfiguration  string   `json:"fullConfiguration"`
+				Configuration      string   `json:"configuration"`
+				PartID             string   `json:"partId"`
+				ElementID          string   `json:"elementId"`
+				DocumentID         string   `json:"documentId"`
+				WvmType            string   `json:"wvmType"`
+				WvmID              string   `json:"wvmId"`
+				IsStandardContent  bool     `json:"isStandardContent"`
+				RelatedOccurrences []string `json:"relatedOccurrences"`
+				IndentLevel        int      `json:"indentLevel"`
+			} `json:"itemSource"`
+			Title2         string `json:"title2"`
+			Title3         string `json:"title3"`
+			Name           string `json:"name"`
+			ExcludeFromBom bool   `json:"excludeFromBom"`
+			Description    string `json:"description"`
+			Appearance     struct {
+				Color struct {
+					Red   int `json:"red"`
+					Green int `json:"green"`
+					Blue  int `json:"blue"`
+				} `json:"color"`
+				Opacity     int  `json:"opacity"`
+				IsGenerated bool `json:"isGenerated"`
+			} `json:"appearance"`
+			NotRevisionManaged bool   `json:"notRevisionManaged"`
+			PartNumber         string `json:"partNumber"`
+			Item               string `json:"item"`
+			Material           struct {
+				LibraryName string        `json:"libraryName"`
+				DisplayName string        `json:"displayName"`
+				ID          string        `json:"id"`
+				Properties  []interface{} `json:"properties"`
+			} `json:"material"`
+			//Five7F3Fb8Efa3416C06701D626 string `json:"57f3fb8efa3416c06701d626"`
+			Title1 string `json:"title1"`
+			//FiveAce8269C046Ad612C65A0Bb string `json:"5ace8269c046ad612c65a0bb"`
+			Project     string `json:"project"`
+			Quantity    int    `json:"quantity"`
+			ProductLine string `json:"productLine"`
+			State       string `json:"state"`
+			BomBehavior string `json:"bomBehavior"`
+			Vendor      string `json:"vendor"`
+			//Five7F3Fb8Efa3416C06701D623 string `json:"57f3fb8efa3416c06701d623"`
+			Revision string `json:"revision"`
+		} `json:"items"`
+	} `json:"bomTable"`
 }
 
 /*
 Execute executes the request
- @return JsonNode
+ @return GetBillOfMaterialsResponse
 */
-func (r apiGetBillOfMaterialsRequest) Execute() (JsonNode, *_nethttp.Response, error) {
+func (r apiGetBillOfMaterialsRequest) Execute() (GetBillOfMaterialsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  JsonNode
+		localVarReturnValue  GetBillOfMaterialsResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AssembliesApiService.GetBillOfMaterials")
@@ -1309,19 +1364,15 @@ func (r apiGetBillOfMaterialsRequest) Execute() (JsonNode, *_nethttp.Response, e
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/bom"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-							
+
 	if r.metadataWorkspaceId != nil {
 		localVarQueryParams.Add("metadataWorkspaceId", parameterToString(*r.metadataWorkspaceId, ""))
 	}
@@ -1389,13 +1440,13 @@ func (r apiGetBillOfMaterialsRequest) Execute() (JsonNode, *_nethttp.Response, e
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v JsonNode
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v JsonNode
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1410,15 +1461,15 @@ func (r apiGetBillOfMaterialsRequest) Execute() (JsonNode, *_nethttp.Response, e
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetFeatureSpecsRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
-}
 
+type apiGetFeatureSpecsRequest struct {
+	ctx        _context.Context
+	apiService *AssembliesApiService
+	did        string
+	wvm        string
+	wvmid      string
+	eid        string
+}
 
 /*
 GetFeatureSpecs Method for GetFeatureSpecs
@@ -1432,11 +1483,11 @@ GetFeatureSpecs Method for GetFeatureSpecs
 func (a *AssembliesApiService) GetFeatureSpecs(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetFeatureSpecsRequest {
 	return apiGetFeatureSpecsRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -1460,18 +1511,14 @@ func (r apiGetFeatureSpecsRequest) Execute() (BTFeatureSpecsResponse664, *_netht
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/featurespecs"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1511,13 +1558,13 @@ func (r apiGetFeatureSpecsRequest) Execute() (BTFeatureSpecsResponse664, *_netht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTFeatureSpecsResponse664
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTFeatureSpecsResponse664
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1532,17 +1579,17 @@ func (r apiGetFeatureSpecsRequest) Execute() (BTFeatureSpecsResponse664, *_netht
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiGetFeaturesRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wvm string
-	wvmid string
-	eid string
-	featureId *[]string
+	ctx            _context.Context
+	apiService     *AssembliesApiService
+	did            string
+	wvm            string
+	wvmid          string
+	eid            string
+	featureId      *[]string
 	linkDocumentId *string
 }
-
 
 func (r apiGetFeaturesRequest) FeatureId(featureId []string) apiGetFeaturesRequest {
 	r.featureId = &featureId
@@ -1566,11 +1613,11 @@ GetFeatures Get Feature List
 func (a *AssembliesApiService) GetFeatures(ctx _context.Context, did string, wvm string, wvmid string, eid string) apiGetFeaturesRequest {
 	return apiGetFeaturesRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wvm: wvm,
-		wvmid: wvmid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wvm:        wvm,
+		wvmid:      wvmid,
+		eid:        eid,
 	}
 }
 
@@ -1594,19 +1641,15 @@ func (r apiGetFeaturesRequest) Execute() (BTAssemblyFeatureListResponse1174, *_n
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wvm}/{wvmid}/e/{eid}/features"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvm"+"}", _neturl.QueryEscape(parameterToString(r.wvm, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvmid"+"}", _neturl.QueryEscape(parameterToString(r.wvmid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-		
+
 	if r.featureId != nil {
 		t := *r.featureId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1682,15 +1725,15 @@ func (r apiGetFeaturesRequest) Execute() (BTAssemblyFeatureListResponse1174, *_n
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetNamedViewsRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	eid string
-	skipPerspective *bool
-	linkDocumentId *string
-}
 
+type apiGetNamedViewsRequest struct {
+	ctx             _context.Context
+	apiService      *AssembliesApiService
+	did             string
+	eid             string
+	skipPerspective *bool
+	linkDocumentId  *string
+}
 
 func (r apiGetNamedViewsRequest) SkipPerspective(skipPerspective bool) apiGetNamedViewsRequest {
 	r.skipPerspective = &skipPerspective
@@ -1712,9 +1755,9 @@ GetNamedViews Method for GetNamedViews
 func (a *AssembliesApiService) GetNamedViews(ctx _context.Context, did string, eid string) apiGetNamedViewsRequest {
 	return apiGetNamedViewsRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		eid:        eid,
 	}
 }
 
@@ -1738,15 +1781,13 @@ func (r apiGetNamedViewsRequest) Execute() (BTNamedViewsInfo, *_nethttp.Response
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/e/{eid}/namedViews"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-		
+
 	if r.skipPerspective != nil {
 		localVarQueryParams.Add("skipPerspective", parameterToString(*r.skipPerspective, ""))
 	}
@@ -1791,13 +1832,13 @@ func (r apiGetNamedViewsRequest) Execute() (BTNamedViewsInfo, *_nethttp.Response
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTNamedViewsInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTNamedViewsInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1812,14 +1853,14 @@ func (r apiGetNamedViewsRequest) Execute() (BTNamedViewsInfo, *_nethttp.Response
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiGetOrCreateBillOfMaterialsElementRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
-	eid string
-}
 
+type apiGetOrCreateBillOfMaterialsElementRequest struct {
+	ctx        _context.Context
+	apiService *AssembliesApiService
+	did        string
+	wid        string
+	eid        string
+}
 
 /*
 GetOrCreateBillOfMaterialsElement Get or Create Bill of Materials Element
@@ -1832,10 +1873,10 @@ GetOrCreateBillOfMaterialsElement Get or Create Bill of Materials Element
 func (a *AssembliesApiService) GetOrCreateBillOfMaterialsElement(ctx _context.Context, did string, wid string, eid string) apiGetOrCreateBillOfMaterialsElementRequest {
 	return apiGetOrCreateBillOfMaterialsElementRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
+		eid:        eid,
 	}
 }
 
@@ -1859,16 +1900,13 @@ func (r apiGetOrCreateBillOfMaterialsElementRequest) Execute() (BTDocumentElemen
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/bomelement"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1908,13 +1946,13 @@ func (r apiGetOrCreateBillOfMaterialsElementRequest) Execute() (BTDocumentElemen
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTDocumentElementInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTDocumentElementInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1929,15 +1967,15 @@ func (r apiGetOrCreateBillOfMaterialsElementRequest) Execute() (BTDocumentElemen
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiGetTranslatorFormatsRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
-	eid string
+	ctx          _context.Context
+	apiService   *AssembliesApiService
+	did          string
+	wid          string
+	eid          string
 	checkContent *bool
 }
-
 
 func (r apiGetTranslatorFormatsRequest) CheckContent(checkContent bool) apiGetTranslatorFormatsRequest {
 	r.checkContent = &checkContent
@@ -1955,10 +1993,10 @@ GetTranslatorFormats Get Translation Formats
 func (a *AssembliesApiService) GetTranslatorFormats(ctx _context.Context, did string, wid string, eid string) apiGetTranslatorFormatsRequest {
 	return apiGetTranslatorFormatsRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
+		eid:        eid,
 	}
 }
 
@@ -1982,17 +2020,14 @@ func (r apiGetTranslatorFormatsRequest) Execute() ([]BTModelFormatInfo, *_nethtt
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/translationformats"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
+
 	if r.checkContent != nil {
 		localVarQueryParams.Add("checkContent", parameterToString(*r.checkContent, ""))
 	}
@@ -2034,13 +2069,13 @@ func (r apiGetTranslatorFormatsRequest) Execute() ([]BTModelFormatInfo, *_nethtt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v []BTModelFormatInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v []BTModelFormatInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2055,15 +2090,15 @@ func (r apiGetTranslatorFormatsRequest) Execute() ([]BTModelFormatInfo, *_nethtt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiInsertTransformedInstancesRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	eid string
-	wid string
+	ctx                                            _context.Context
+	apiService                                     *AssembliesApiService
+	did                                            string
+	eid                                            string
+	wid                                            string
 	bTAssemblyTransformedInstancesDefinitionParams *BTAssemblyTransformedInstancesDefinitionParams
 }
-
 
 func (r apiInsertTransformedInstancesRequest) BTAssemblyTransformedInstancesDefinitionParams(bTAssemblyTransformedInstancesDefinitionParams BTAssemblyTransformedInstancesDefinitionParams) apiInsertTransformedInstancesRequest {
 	r.bTAssemblyTransformedInstancesDefinitionParams = &bTAssemblyTransformedInstancesDefinitionParams
@@ -2081,10 +2116,10 @@ InsertTransformedInstances Create and transform assembly instances
 func (a *AssembliesApiService) InsertTransformedInstances(ctx _context.Context, did string, eid string, wid string) apiInsertTransformedInstancesRequest {
 	return apiInsertTransformedInstancesRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		eid: eid,
-		wid: wid,
+		ctx:        ctx,
+		did:        did,
+		eid:        eid,
+		wid:        wid,
 	}
 }
 
@@ -2108,17 +2143,14 @@ func (r apiInsertTransformedInstancesRequest) Execute() (BTAssemblyInsertTransfo
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/transformedinstances"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
+
 	if r.bTAssemblyTransformedInstancesDefinitionParams == nil {
 		return localVarReturnValue, nil, reportError("bTAssemblyTransformedInstancesDefinitionParams is required and must be specified")
 	}
@@ -2163,13 +2195,13 @@ func (r apiInsertTransformedInstancesRequest) Execute() (BTAssemblyInsertTransfo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTAssemblyInsertTransformedInstancesResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTAssemblyInsertTransformedInstancesResponse
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2184,15 +2216,15 @@ func (r apiInsertTransformedInstancesRequest) Execute() (BTAssemblyInsertTransfo
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 type apiTransformOccurrencesRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	eid string
-	wid string
+	ctx                                 _context.Context
+	apiService                          *AssembliesApiService
+	did                                 string
+	eid                                 string
+	wid                                 string
 	bTAssemblyTransformDefinitionParams *BTAssemblyTransformDefinitionParams
 }
-
 
 func (r apiTransformOccurrencesRequest) BTAssemblyTransformDefinitionParams(bTAssemblyTransformDefinitionParams BTAssemblyTransformDefinitionParams) apiTransformOccurrencesRequest {
 	r.bTAssemblyTransformDefinitionParams = &bTAssemblyTransformDefinitionParams
@@ -2210,10 +2242,10 @@ TransformOccurrences Transform assembly occurrences.
 func (a *AssembliesApiService) TransformOccurrences(ctx _context.Context, did string, eid string, wid string) apiTransformOccurrencesRequest {
 	return apiTransformOccurrencesRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		eid: eid,
-		wid: wid,
+		ctx:        ctx,
+		did:        did,
+		eid:        eid,
+		wid:        wid,
 	}
 }
 
@@ -2228,7 +2260,6 @@ func (r apiTransformOccurrencesRequest) Execute() (*_nethttp.Response, error) {
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "AssembliesApiService.TransformOccurrences")
@@ -2237,17 +2268,14 @@ func (r apiTransformOccurrencesRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/occurrencetransforms"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
+
 	if r.bTAssemblyTransformDefinitionParams == nil {
 		return nil, reportError("bTAssemblyTransformDefinitionParams is required and must be specified")
 	}
@@ -2297,16 +2325,16 @@ func (r apiTransformOccurrencesRequest) Execute() (*_nethttp.Response, error) {
 
 	return localVarHTTPResponse, nil
 }
+
 type apiTranslateFormatRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wv string
-	wvid string
-	eid string
+	ctx                     _context.Context
+	apiService              *AssembliesApiService
+	did                     string
+	wv                      string
+	wvid                    string
+	eid                     string
 	bTTranslateFormatParams *BTTranslateFormatParams
 }
-
 
 func (r apiTranslateFormatRequest) BTTranslateFormatParams(bTTranslateFormatParams BTTranslateFormatParams) apiTranslateFormatRequest {
 	r.bTTranslateFormatParams = &bTTranslateFormatParams
@@ -2325,11 +2353,11 @@ TranslateFormat Create Assembly translation.
 func (a *AssembliesApiService) TranslateFormat(ctx _context.Context, did string, wv string, wvid string, eid string) apiTranslateFormatRequest {
 	return apiTranslateFormatRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wv: wv,
-		wvid: wvid,
-		eid: eid,
+		ctx:        ctx,
+		did:        did,
+		wv:         wv,
+		wvid:       wvid,
+		eid:        eid,
 	}
 }
 
@@ -2353,19 +2381,15 @@ func (r apiTranslateFormatRequest) Execute() (BTTranslationRequestInfo, *_nethtt
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/{wv}/{wvid}/e/{eid}/translations"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wv"+"}", _neturl.QueryEscape(parameterToString(r.wv, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wvid"+"}", _neturl.QueryEscape(parameterToString(r.wvid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wv"+"}", _neturl.QueryEscape(parameterToString(r.wv, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wvid"+"}", _neturl.QueryEscape(parameterToString(r.wvid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-	
+
 	if r.bTTranslateFormatParams == nil {
 		return localVarReturnValue, nil, reportError("bTTranslateFormatParams is required and must be specified")
 	}
@@ -2410,13 +2434,13 @@ func (r apiTranslateFormatRequest) Execute() (BTTranslationRequestInfo, *_nethtt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTTranslationRequestInfo
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTTranslationRequestInfo
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2431,16 +2455,16 @@ func (r apiTranslateFormatRequest) Execute() (BTTranslationRequestInfo, *_nethtt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-type apiUpdateFeatureRequest struct {
-	ctx _context.Context
-	apiService *AssembliesApiService
-	did string
-	wid string
-	eid string
-	fid string
-	body *string
-}
 
+type apiUpdateFeatureRequest struct {
+	ctx        _context.Context
+	apiService *AssembliesApiService
+	did        string
+	wid        string
+	eid        string
+	fid        string
+	body       *string
+}
 
 func (r apiUpdateFeatureRequest) Body(body string) apiUpdateFeatureRequest {
 	r.body = &body
@@ -2459,11 +2483,11 @@ UpdateFeature Method for UpdateFeature
 func (a *AssembliesApiService) UpdateFeature(ctx _context.Context, did string, wid string, eid string, fid string) apiUpdateFeatureRequest {
 	return apiUpdateFeatureRequest{
 		apiService: a,
-		ctx: ctx,
-		did: did,
-		wid: wid,
-		eid: eid,
-		fid: fid,
+		ctx:        ctx,
+		did:        did,
+		wid:        wid,
+		eid:        eid,
+		fid:        fid,
 	}
 }
 
@@ -2487,19 +2511,15 @@ func (r apiUpdateFeatureRequest) Execute() (BTFeatureDefinitionResponse1617, *_n
 	}
 
 	localVarPath := localBasePath + "/api/assemblies/d/{did}/w/{wid}/e/{eid}/features/featureid/{fid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")) , -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"fid"+"}", _neturl.QueryEscape(parameterToString(r.fid, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"did"+"}", _neturl.QueryEscape(parameterToString(r.did, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wid"+"}", _neturl.QueryEscape(parameterToString(r.wid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"eid"+"}", _neturl.QueryEscape(parameterToString(r.eid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fid"+"}", _neturl.QueryEscape(parameterToString(r.fid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	
-	
-	
-	
-	
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json;charset=UTF-8; qs=0.09"}
 
@@ -2540,13 +2560,13 @@ func (r apiUpdateFeatureRequest) Execute() (BTFeatureDefinitionResponse1617, *_n
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v BTFeatureDefinitionResponse1617
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v BTFeatureDefinitionResponse1617
+		err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
