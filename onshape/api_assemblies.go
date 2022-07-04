@@ -12,6 +12,7 @@ package onshape
 
 import (
 	_context "context"
+	"encoding/json"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -1332,12 +1333,12 @@ type GetBillOfMaterialsResponse struct {
 			//Five7F3Fb8Efa3416C06701D626 string `json:"57f3fb8efa3416c06701d626"`
 			Title1 string `json:"title1"`
 			//FiveAce8269C046Ad612C65A0Bb string `json:"5ace8269c046ad612c65a0bb"`
-			Project     string `json:"project"`
-			Quantity    int    `json:"quantity"`
-			ProductLine string `json:"productLine"`
-			State       string `json:"state"`
-			BomBehavior string `json:"bomBehavior"`
-			Vendor      string `json:"vendor"`
+			Project     string      `json:"project"`
+			Quantity    json.Number `json:"quantity"`
+			ProductLine string      `json:"productLine"`
+			State       string      `json:"state"`
+			BomBehavior string      `json:"bomBehavior"`
+			Vendor      string      `json:"vendor"`
 			//Five7F3Fb8Efa3416C06701D623 string `json:"57f3fb8efa3416c06701d623"`
 			Revision string `json:"revision"`
 		} `json:"items"`
